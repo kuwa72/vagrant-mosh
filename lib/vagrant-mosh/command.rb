@@ -15,7 +15,6 @@ module VagrantPlugins
 
         with_target_vms(argv, single_target: true) do |vm|
           ssh_info = vm.ssh_info
-          switch_to_remote_ip(ssh_info, vm) if localhost?(ssh_info[:host])
           mosh_command = ['mosh', *mosh_arguments(ssh_info)].join(' ')
           Vagrant::Util::SafeExec.exec(mosh_command)
         end
